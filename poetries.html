@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>中文学习</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+
+      <header>
+
+      </header>
+
+      <section>
+
+      </section>
+
+    <script>
+    var section = document.querySelector('section');
+    var requestURL = 'poetries.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function() {
+      var poetries = request.response;
+      showPoetries(poetries);
+    }
+    function showPoetries(jsonObj) {
+      var poetry = jsonObj['members'];
+      for(var i = 0; i < poetry.length; i++) {
+        var myArticle = document.createElement('article');
+        var vTitle = document.createElement('p');
+		vTitle.className = "title";
+        vTitle.textContent = poetry[i].name;        
+		var vAuthor = document.createElement('p');
+		vAuthor.className = "author";
+        vAuthor.textContent = '作者：' + poetry[i].author;
+		var vContent = document.createElement('p');
+		vContent.className = "content";
+		var strContent = poetry[i].content;
+		var vRegex = "/(，|。)/";
+		var vArrayContent = strContent.split(/[，。]/);
+		for(var j = 0; j < vArrayContent.length; j++)
+		{
+			var vDiv = document.createElement('div');
+			vDiv.textContent = vArrayContent[j];
+			vContent.appendChild(vDiv);
+		}
+        var vDate = document.createElement('p');   
+		vDate.className = "date";
+        vDate.textContent = '生字表:(' + poetry[i].date + ')';
+		var vWords = document.createElement('p');
+		vWords.className = "words";		
+        vWords.textContent = poetry[i].words;
+		
+        myArticle.appendChild(vTitle);
+        myArticle.appendChild(vAuthor);
+        myArticle.appendChild(vContent);
+		myArticle.appendChild(vDate);
+		myArticle.appendChild(vWords);
+		
+        section.appendChild(myArticle);
+      }
+    }
+    </script>
+  </body>
+</html>
