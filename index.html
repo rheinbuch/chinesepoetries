@@ -29,26 +29,6 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
-    <select id="dynamic_select">
-      <option value="" selected>选择名称</option>
-      <option value="#江南春">江南春 （作者： 杜牧)</option>
-      <option value="＃绝句杜甫">绝句 （作者： 杜甫）</option>
-      <option value="＃中秋夜">中秋夜 （作者： ）</option>
-    </select>
-    <script>
-    $(function(){
-      // bind change event to select
-      $('#dynamic_select').on('change', function () {
-          var url = $(this).val(); // get selected value
-          if (url) { // require a URL
-              window.location = url; // redirect
-          }
-          return false;
-      });
-    });
-</script>
-    </div>
-    <div class="col-sm-6">
       <p id="江南春" class="title">江南春 （作者： 杜牧)</p>
       <p class="content">
         千里莺啼绿映红，<br/>
